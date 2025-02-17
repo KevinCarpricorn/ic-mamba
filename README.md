@@ -1,4 +1,7 @@
 # 📄 Before It's Too Late: A State Space Model for the Early Prediction of Misinformation and Disinformation Engagement
+
+[![DOI](https://zenodo.org/badge/868873991.svg)](https://doi.org/10.5281/zenodo.14880301)
+
 ## 📝 Introduction
 
 In today’s digital age, **misinformation and disinformation** can rapidly spread, impacting social and democratic cohesion. While deep learning models have made strides in **engagement prediction**, they struggle with **irregularly sampled data** and **early trajectory forecasting**.
