@@ -1,8 +1,31 @@
 import os
 import torch
-from models import Autoformer, Transformer, TimesNet, Nonstationary_Transformer, DLinear, FEDformer, \
-    Informer, LightTS, Reformer, ETSformer, Pyraformer, PatchTST, MICN, Crossformer, FiLM, iTransformer, \
-    Koopa, TiDE, FreTS, TimeMixer, TSMixer, SegRNN, MambaSimple, TemporalFusionTransformer, SCINet
+from models import (
+    Autoformer,
+    Transformer,
+    TimesNet,
+    Nonstationary_Transformer,
+    DLinear,
+    Informer,
+    LightTS,
+    Reformer,
+    PatchTST,
+    Crossformer,
+    FiLM,
+    iTransformer,
+    TiDE,
+    TimeMixer,
+    TSMixer,
+    MambaSimple,
+)
+
+try:  # Optional dependency for the main model
+    from models import ICMamba
+    _has_icmamba = True
+except Exception as _e:
+    ICMamba = None  # type: ignore
+    _has_icmamba = False
+    _icmamba_import_error = _e
 
 
 class Exp_Basic(object):
@@ -14,27 +37,22 @@ class Exp_Basic(object):
             'Transformer': Transformer,
             'Nonstationary_Transformer': Nonstationary_Transformer,
             'DLinear': DLinear,
-            'FEDformer': FEDformer,
             'Informer': Informer,
             'LightTS': LightTS,
             'Reformer': Reformer,
-            'ETSformer': ETSformer,
             'PatchTST': PatchTST,
-            'Pyraformer': Pyraformer,
-            'MICN': MICN,
             'Crossformer': Crossformer,
             'FiLM': FiLM,
             'iTransformer': iTransformer,
-            'Koopa': Koopa,
             'TiDE': TiDE,
-            'FreTS': FreTS,
             'MambaSimple': MambaSimple,
             'TimeMixer': TimeMixer,
             'TSMixer': TSMixer,
-            'SegRNN': SegRNN,
-            'TemporalFusionTransformer': TemporalFusionTransformer,
-            "SCINet": SCINet
         }
+        if _has_icmamba:
+            self.model_dict['ICMamba'] = ICMamba
+        else:
+            print(f"Warning: ICMamba is unavailable ({_icmamba_import_error})")
         if args.model == 'Mamba':
             print('Please make sure you have successfully installed mamba_ssm')
             from models import Mamba

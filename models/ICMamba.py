@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from einops import rearrange, repeat, einsum
 from layers.Embed import DataEmbedding
-from ssd import *
+from .ssd import *
 
 
 try:

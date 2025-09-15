@@ -3,7 +3,7 @@ from data_provider.m4 import M4Meta
 from exp.exp_basic import Exp_Basic
 from utils.tools import EarlyStopping, adjust_learning_rate, visual
 from utils.losses import mape_loss, mase_loss, smape_loss
-from utils.ic_summary import ICSummary
+from utils.ic_summary import IC_Summary
 import torch
 import torch.nn as nn
 from torch import optim
@@ -223,7 +223,7 @@ class Exp_Short_Term_Forecast(Exp_Basic):
                 and 'Daily_forecast.csv' in os.listdir(file_path) \
                 and 'Hourly_forecast.csv' in os.listdir(file_path) \
                 and 'Quarterly_forecast.csv' in os.listdir(file_path):
-            m4_summary = ICSummary(file_path, self.args.root_path)
+            m4_summary = IC_Summary(file_path, self.args.root_path)
             # m4_forecast.set_index(m4_winner_forecast.columns[0], inplace=True)
             smape_results, owa_results, mape, mase = m4_summary.evaluate()
             print('smape:', smape_results)
